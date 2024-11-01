@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68298f310c90451896cbfc779e82c4cf" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBANSACHModel1.CHITIETDONTHANG" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.CHUDE" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.DONDATHANG" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.KHACHHANG" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.NHAXUATBAN" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.SACH" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.sysdiagram" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.TACGIA" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel1.VIETSACH" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_CHITIETDONTHANG_DONDATHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_CHITIETDONTHANG_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_Chude" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_Khachhang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_NhaXB" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_Sach" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel1.FK_TacGia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

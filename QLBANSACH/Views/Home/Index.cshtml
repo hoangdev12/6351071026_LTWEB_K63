@@ -1,0 +1,38 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<QLBANSACH.Models.SACH>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .templatemo_product_box img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover; /* Giúp ảnh vừa khít trong khung mà không bị méo */
+    }
+</style>
+
+<div id="templatemo_content_right">
+    @foreach (var sach in Model)
+    {
+        <div class="templatemo_product_box">
+            <h1>@sach.Tensach <span></span></h1>
+            <a href="@Url.Action("DetailsSP", "Home", new { id = sach.Masach })">
+                <img src="~/Content/Images/SACH/@sach.Anhbia" alt="@sach.Tensach" />
+            </a>
+            <div class="product_info">
+                <p>@sach.Mota</p>
+                <h3>@sach.Giaban</h3>
+                <div class="buy_now_button"><a href="@Url.Action("Buy", "Book", new { id = sach.Masach })">Buy Now</a></div>
+                <div class="detail_button"><a href="@Url.Action("Details", "Book", new { id = sach.Masach })">Detail</a></div>
+            </div>
+        </div>
+    }
+</div>
+<!-- end of content right -->
+
+<div class="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

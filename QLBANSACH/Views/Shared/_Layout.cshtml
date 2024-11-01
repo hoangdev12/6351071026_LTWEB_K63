@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store Template</title>
+    <meta name="keywords" content="Book Store Template, CSS, HTML" />
+    <meta name="description" content="Book Store Template, Download CSS Website" />
+    <link href="@Url.Content("~/Content/Style/templatemo_style.css")" rel="stylesheet" />
+</head>
+<body>
+    <div id="templatemo_container">
+        <header id="templatemo_menu">
+            <ul>
+                <li><a href="/Home/Index" class="current">Home</a></li>
+                <li><a href="/Home/subpage">Search</a></li>
+                <li><a href="/Home/subpage">Books</a></li>
+                <li><a href="/Home/subpage">New Releases</a></li>
+                <li><a href="/Home/subpage">Company</a></li>
+                <li><a href="/Home/subpage">Contact</a></li>
+            </ul>
+        </header>
+
+        <div id="templatemo_header" style="background: url('/Content/images/templatemo_header_bg.jpg') no-repeat center center; background-size: cover;">
+            <div id="templatemo_special_offers">
+                <p><span>25%</span> discounts for purchase over $80</p>
+                <a href="subpage.html">Read more...</a>
+            </div>
+            <div id="templatemo_new_books">
+                <ul>
+                    <li>Suspen disse</li>
+                    <li>Maece nas metus</li>
+                    <li>In sed risus ac feli</li>
+                </ul>
+                <a href="subpage.html">Read more...</a>
+            </div>
+        </div>
+
+        <main id="templatemo_content">
+            <div id="templatemo_content_left">
+                <div class="templatemo_content_left_section">
+                    <h1 class="lead">Chủ đề sách</h1>
+                    @Html.Action("chude", "Home")
+
+                </div>
+                <div class="templatemo_content_left_section">
+                    <h1 class="lead">Nhà xuất bản</h1>
+                    @Html.Action("NhaXuatBan", "Home")
+
+                </div>
+                <div class="templatemo_content_left_section">
+
+                </div>
+            </div>
+
+            @RenderBody()
+        </main>
+
+        <footer id="templatemo_footer">
+            <a href="subpage.html">Home</a> | <a href="subpage.html">Search</a> | <a href="subpage.html">Books</a>
+            <br />
+            Copyright © 2048 <strong>Your Company Name</strong> |
+            <a href="http://www.templatemo.com">Free CSS Templates</a>
+        </footer>
+    </div>
+
+    <div align="center">This template downloaded from <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div>
+</body>
+</html>
