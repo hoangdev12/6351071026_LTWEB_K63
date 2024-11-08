@@ -20,13 +20,13 @@
         <div class="templatemo_product_box">
             <h1>@sach.Tensach <span></span></h1>
             <a href="@Url.Action("DetailsSP", "Home", new { id = sach.Masach })">
-                <img src="~/Content/Images/SACH/@sach.Anhbia" alt="@sach.Tensach" />
+                <img src="~/Content/images/SACH/@sach.Anhbia" alt="@sach.Tensach" />
             </a>
             <div class="product_info">
                 <p>@sach.Mota</p>
                 <h3>@sach.Giaban</h3>
                 <div class="buy_now_button"><a href="@Url.Action("Buy", "Book", new { id = sach.Masach })">Buy Now</a></div>
-                <div class="detail_button"><a href="@Url.Action("Details", "Book", new { id = sach.Masach })">Detail</a></div>
+                <div class="detail_button"><a href="@Url.Action("DetailsSP", "Home", new { id = sach.Masach })">Detail</a></div>
             </div>
         </div>
     }

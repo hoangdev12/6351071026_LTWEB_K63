@@ -1,0 +1,38 @@
+﻿@model QLBANSACH.Models.Giohang
+@{
+    ViewBag.Title = "ChiTietGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi Tiết Sản Phẩm</h2>
+
+<table class="table">
+    <tr>
+        <td><strong>Mã sách:</strong></td>
+        <td>@Model.iMasach</td>
+    </tr>
+    <tr>
+        <td><strong>Tên sách:</strong></td>
+        <td>@Model.sTensach</td>
+    </tr>
+    <tr>
+        <td><strong>Hình ảnh:</strong></td>
+        <td><img src="~/Content/images/SACH/@Model.sAnhbia" style="width: 150px; height: auto;" /></td>
+    </tr>
+    <tr>
+        <td><strong>Đơn giá:</strong></td>
+        <td>@string.Format("{0:0,0}", Model.dDongia)</td>
+    </tr>
+    <tr>
+        <td><strong>Số lượng:</strong></td>
+        <td>@Model.iSoluong</td>
+    </tr>
+    <tr>
+        <td><strong>Thành tiền:</strong></td>
+        <td>@string.Format("{0:0,0}", Model.dThanhtien)</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("GioHang", "GioHang")" class="btn btn-outline-primary">Quay lại giỏ hàng</a>
+
+

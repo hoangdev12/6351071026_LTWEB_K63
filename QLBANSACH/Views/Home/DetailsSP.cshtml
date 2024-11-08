@@ -30,7 +30,13 @@
         <dt>Mô tả</dt>
         <dd>@Model.Mota</dd>
     </dl>
+
+    <div id="Datmua">
+        <a href="@Url.Action("ThemGioHang","GioHang", new {iMasach = Model.Masach, strUrl=Request.Url.ToString() })">content</a>
+    </div>
 </div>
+
+
 
 <div>
     <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại danh sách sách</a>
