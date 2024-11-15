@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<QLBANSACH.Models.SACH>
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+
+<h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+
+<p>
+    @Html.ActionLink("Create", "Create")
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model[0].Tensach)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Giaban)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Mota)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Anhbia)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Ngaycapnhat)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Soluongton)</th>
+            <th>@Html.DisplayNameFor(model => model[0].MaCD)</th>
+            <th>@Html.DisplayNameFor(model => model[0].MaNXB)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sach in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => sach.Tensach)</td>
+                <td>@Html.DisplayFor(modelItem => sach.Giaban)</td>
+                <td>@Html.DisplayFor(modelItem => sach.Mota)</td>
+                <td>
+                    <img src="@Url.Content("~/Content/images/SACH/" + sach.Anhbia)" alt="@sach.Tensach" style="width: 100px; height: 100px; object-fit: cover;" />
+                </td>
+                <td>@(sach.Ngaycapnhat?.ToString("dd/MM/yyyy") ?? "N/A")</td>
+                <td>@Html.DisplayFor(modelItem => sach.Soluongton)</td>
+                <td>@Html.DisplayFor(modelItem => sach.MaCD)</td>
+                <td>@Html.DisplayFor(modelItem => sach.MaNXB)</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit","Admin", new { id = sach.Masach }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Chi tiết", "Details","Admin", new { id = sach.Masach }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Xóa", "Delete","Admin", new { id = sach.Masach }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("Sach", new { page }))
+</div>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+            .pagination a:hover {
+                background-color: #007bff;
+                color: white;
+            }
+</style>

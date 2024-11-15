@@ -77,46 +77,38 @@ namespace QLBANSACH.Controllers
             return View();
         }
 
-        [HttpPost]
         public ActionResult DangNhap(LoginViewModel customer)
         {
             if (ModelState.IsValid)
             {
-                // Find user by username (case-insensitive)
                 var user = _context.KHACHHANGs.FirstOrDefault(s => s.Taikhoan.Equals(customer.TenDN, StringComparison.OrdinalIgnoreCase));
 
                 if (user != null)
                 {
-                    
-                    var enteredPasswordHash = customer.Matkhau; 
+                    var enteredPasswordHash = customer.Matkhau;
 
-                    
                     if (enteredPasswordHash.Equals(user.Matkhau))
                     {
-                        
-                        Session["User"] = user.Taikhoan;
+                        // Lưu đối tượng KHACHHANG vào session
+                        Session["User"] = user;
                         Session["AccountId"] = user.MaKH;
 
-
-                        
-                        return RedirectToAction("Index", "Home"); 
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                       
                         ModelState.AddModelError("Matkhau", "Mật khẩu không chính xác.");
                     }
                 }
                 else
                 {
-                    
                     ModelState.AddModelError("TenDN", "Tên đăng nhập không tồn tại.");
                 }
             }
 
-            
             return View(customer);
         }
+
 
 
 

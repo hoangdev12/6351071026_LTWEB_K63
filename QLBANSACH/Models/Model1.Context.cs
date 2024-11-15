@@ -25,6 +25,7 @@ namespace QLBANSACH.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<CHITIETDONTHANG> CHITIETDONTHANGs { get; set; }
         public virtual DbSet<CHUDE> CHUDEs { get; set; }
         public virtual DbSet<DONDATHANG> DONDATHANGs { get; set; }

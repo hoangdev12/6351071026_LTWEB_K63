@@ -20,19 +20,14 @@ namespace QLBANSACH.Controllers
 
         public ActionResult Index(int? page)
         {
-            // Fetch all books from the database
+            
             var books = _context.SACHes.ToList();
-
-            // Determine the current page number, defaulting to 1 if not specified
+           
             var pageNumber = page ?? 1;
-
-            // Set the number of items to display per page
             var pageSize = 4;
 
-            // Order the books by the specified property (Masach) and paginate the results
             var pagedBooks = books.OrderBy(b => b.Masach).ToPagedList(pageNumber, pageSize);
-
-            // Return the paginated list to the view
+       
             return View(pagedBooks);
         }
 

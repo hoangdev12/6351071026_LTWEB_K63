@@ -1,0 +1,43 @@
+﻿@model QLBANSACH.Models.SACH
+
+@{
+    ViewBag.Title = "Chi tiết sách";
+}
+
+<h2>@Model.Tensach</h2>
+
+<div>
+    <h4>Thông tin sách</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mã sách</dt>
+        <dd>@Model.Masach</dd>
+
+        <dt>Tên sách</dt>
+        <dd>@Model.Tensach</dd>
+
+        <dt>Ảnh bìa</dt>
+        <dd>
+            <img src="~/Content/images/SACH/@Model.Anhbia" alt="Ảnh bìa @Model.Tensach" style="max-width:200px; max-height:300px;" />
+        </dd>
+
+        <dt>Nhà xuất bản</dt>
+        <dd>@Model.NHAXUATBAN</dd>
+
+        <dt>Giá</dt>
+        <dd>@Model.Giaban</dd>
+
+        <dt>Mô tả</dt>
+        <dd>@Model.Mota</dd>
+    </dl>
+
+    <div id="Datmua">
+        <a href="@Url.Action("ThemGioHang","GioHang", new {iMasach = Model.Masach, strUrl=Request.Url.ToString() })">content</a>
+    </div>
+</div>
+
+
+
+<div>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại danh sách sách</a>
+</div>

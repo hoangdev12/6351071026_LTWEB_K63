@@ -1,0 +1,47 @@
+﻿@model IEnumerable<dynamic>
+@{
+    ViewBag.Title = "Thống kê sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Số lượng sách theo từng chủ đề</h2>
+
+<canvas id="bookChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Lấy dữ liệu từ ViewBag và chuyển đổi từ JSON về dạng mảng
+    var categories = @Html.Raw(ViewBag.Categories ?? "[]");
+    var counts = @Html.Raw(ViewBag.Counts ?? "[]");
+
+    // Kiểm tra nếu categories và counts không rỗng
+    if (categories.length > 0 && counts.length > 0) {
+        // Cấu hình biểu đồ
+        var ctx = document.getElementById('bookChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: categories, // Sử dụng tên chủ đề làm nhãn cho trục X
+                datasets: [{
+                    label: 'Số lượng sách',
+                    data: counts, // Sử dụng số lượng sách cho trục Y
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true // Đảm bảo trục Y bắt đầu từ 0
+                    }
+                }
+            }
+        });
+    } else {
+        // Nếu không có dữ liệu, hiển thị thông báo
+        document.getElementById('bookChart').innerHTML = "<p>Không có dữ liệu để hiển thị.</p>";
+    }
+</script>

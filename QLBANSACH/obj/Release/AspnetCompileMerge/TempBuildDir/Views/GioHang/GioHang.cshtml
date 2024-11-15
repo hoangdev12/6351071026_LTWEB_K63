@@ -1,0 +1,62 @@
+﻿@model List<QLBANSACH.Models.Giohang>
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<table align="center" border="1">
+    <tr style="text-align:center; font-weight:bold">
+        <td> Mã sách </td>
+        <td> Tên sách </td>
+        <td> Hình ảnh </td>
+        <td> Số lượng </td>
+        <td> Đơn giá </td>
+        <td> Thành tiền </td>
+        <td> Cập nhật </td>
+        <td> Chi tiết </td>
+        <td> Xóa </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center; font-weight:bold">
+            <td> @item.iMasach </td>
+            <td> @item.sTensach </td>
+            <td><img src="~/Content/images/SACH/@item.sAnhbia" style="width:100px;height:auto;" /></td>
+            <td>@item.iSoluong</td>
+            <td>@string.Format("{0:0,0}", item.dDongia)</td>
+            <td>@string.Format("{0:0,0}", item.dThanhtien)</td>
+
+            <!-- Cập nhật số lượng -->
+            <td>
+                @using (Html.BeginForm("SuaGioHang", "GioHang", FormMethod.Post))
+                {
+                    <input type="hidden" name="iMasach" value="@item.iMasach" />
+                    <input type="number" name="soLuongMoi" value="@item.iSoluong" min="1" style="width: 50px;" />
+                    <button type="submit" class="btn btn-outline-primary">Cập nhật</button>
+                }
+            </td>
+
+            <!-- Chi tiết sản phẩm -->
+            <td>
+                <a href="@Url.Action("ChiTietGioHang", "GioHang", new { iMasach = item.iMasach })" class="btn btn-outline-success">Chi tiết</a>
+            </td>
+
+            <!-- Xóa sản phẩm -->
+            <td>
+                <a href="@Url.Action("XoaGioHang", "GioHang", new { iMasach = item.iMasach })" class="btn btn-danger">Xóa</a>
+            </td>
+        </tr>
+    }
+
+    <!-- Tổng số lượng và tổng tiền -->
+    <tr style="font-weight: bold; text-align:right; color:red">
+        <td colspan="3"> Số lượng sách: @ViewBag.Tongsoluong </td>
+        <td colspan="3"> Tổng tiền: @string.Format("{0:0,0}", ViewBag.Tongtien) VNĐ </td>
+    </tr>
+</table>
+
+<div style="text-align: center;">
+    <a href="@Url.Action("XoaTatCaGioHang", "GioHang")" class="btn btn-danger">Xóa tất cả sản phẩm</a>
+</div>
+
+<div style="text-align:center">
+    @Html.ActionLink("DAT HANG", "Dathang", "GioHang")
+</div>

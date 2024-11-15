@@ -1,0 +1,88 @@
+﻿@model QLBANSACH.Models.RegisterViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">ĐĂNG KÝ THÀNH VIÊN</h2>
+
+    @using (Html.BeginForm("DangKy", "NguoiDung", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<table class="table table-bordered" align="center">
+    <tr>
+        <td class="w-25">Họ tên khách hàng:</td>
+        <td>
+            @Html.TextBoxFor(m => m.HotenKH, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.HotenKH, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td class="w-25">Email:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td class="w-25">Diachi:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Diachi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Diachi, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>Tên đăng nhập:</td>
+        <td>
+            @Html.TextBoxFor(m => m.TenDN, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TenDN, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>Mật khẩu:</td>
+        <td>
+            @Html.PasswordFor(m => m.Matkhau, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Matkhau, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>Mật khẩu nhập lại:</td>
+        <td>
+            @Html.PasswordFor(m => m.Matkhaunhaplai, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Matkhaunhaplai, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>Điện thoại:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Dienthoai, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Dienthoai, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td>Ngày sinh:</td>
+        <td>
+            @Html.TextBoxFor(m => m.Ngaysinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.Ngaysinh, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Đăng ký" class="btn btn-primary" />
+        </td>
+    </tr>
+</table>
+    }
+</div>

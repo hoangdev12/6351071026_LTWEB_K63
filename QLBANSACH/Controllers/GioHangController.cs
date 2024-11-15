@@ -178,52 +178,83 @@ namespace QLBANSACH.Controllers
         }
 
         [HttpGet]
-        public ActionResult Dathang() 
+        public ActionResult Dathang()
         {
-            if (Session["User"] == null || Session["User"].ToString() == "")
+            KHACHHANG kh = Session["User"] as KHACHHANG;
+            if (kh == null)
             {
                 return RedirectToAction("DangNhap", "NguoiDung");
             }
-            if (Session["Giohang"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
 
             List<Giohang> lstGiohang = laygiohang();
+            ViewBag.KhachHang = kh; 
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongTien = TongTien();
 
             return View(lstGiohang);
         }
 
+
+
+        [HttpPost]
         public ActionResult Dathang(FormCollection collection)
         {
+            KHACHHANG kh = Session["User"] as KHACHHANG; // Sử dụng ép kiểu an toàn
+
+            if (kh == null)
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+
             DONDATHANG ddh = new DONDATHANG();
-            KHACHHANG kh = (KHACHHANG)Session["User"];
             List<Giohang> gh = laygiohang();
             ddh.MaKH = kh.MaKH;
             ddh.Ngaydat = DateTime.Now;
-            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["Ngaygiao"]);
-            ddh.Ngaygiao = DateTime.Parse(ngaygiao);
+
+            var ngaygiao = collection["Ngaygiao"];
+            if (string.IsNullOrEmpty(ngaygiao))
+            {
+                ModelState.AddModelError("Ngaygiao", "Ngày giao không thể để trống.");
+                return View();
+            }
+
+            try
+            {
+                ddh.Ngaygiao = DateTime.Parse(ngaygiao);
+            }
+            catch (FormatException)
+            {
+                ModelState.AddModelError("Ngaygiao", "Ngày giao không hợp lệ.");
+                return View();
+            }
+
             ddh.Tinhtranggiaohang = false;
             ddh.Dathanhtoan = false;
+
             _context.DONDATHANGs.Add(ddh);
             _context.SaveChanges();
 
             foreach (Giohang g in gh)
             {
-                CHITIETDONTHANG ctdh = new CHITIETDONTHANG();
-                ctdh.MaDonHang = ddh.MaDonHang;
-                ctdh.Masach = g.iMasach;
-                ctdh.Soluong = g.iSoluong;
-                ctdh.Dongia = (decimal)g.dDongia;
+                CHITIETDONTHANG ctdh = new CHITIETDONTHANG
+                {
+                    MaDonHang = ddh.MaDonHang,
+                    Masach = g.iMasach,
+                    Soluong = g.iSoluong,
+                    Dongia = (decimal)g.dDongia
+                };
                 _context.CHITIETDONTHANGs.Add(ctdh);
-
             }
+
             _context.SaveChanges();
             Session["Giohang"] = null;
+
             return RedirectToAction("Xacnhandonhang", "GioHang");
         }
+
+
+
+
 
         public ActionResult Xacnhandonhang()
         {
